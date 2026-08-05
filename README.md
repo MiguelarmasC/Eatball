@@ -29,4 +29,4 @@ No requiere de ningún servidor para ejecutarse. Puedes clonarlo y abrirlo direc
 
 1. **Clona este repositorio:**
    ```bash
-   git clone [https://github.com/tu-usuario/nombre-del-repositorio.git](https://github.com/tu-usuario/nombre-del-repositorio.git)
+   git clone [https://github.com/MiguelarmasC/Eatball.git](https://github.com/MiguelarmasC/Eatball.git)
