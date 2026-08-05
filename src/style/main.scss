@@ -1,0 +1,18 @@
+// Importe de estilos.
+@use './abstracts/variables' as *;
+@use './abstracts/mixins' as *;
+
+@use './base/reset';
+@use './base/base';
+@use './base/typography';
+
+@use './components/buttons';
+
+@use './pages/home';
+
+@use './themes/default';
+
+@use './vendors/vendors';
+
+@use './layout/layout';
+

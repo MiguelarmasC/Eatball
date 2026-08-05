@@ -1,0 +1,33 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.game_container{
+  width: 95%;
+  height:82vw;
+  border: 3px solid $green;
+  align-self: center;
+  margin-bottom: 17px;
+  #ball{
+    width: 30px;
+    height: 30px;
+    background-color: $red;
+    border-radius: 25px;
+    position: relative;
+    left: 550px;
+    top: 430px;
+    z-index: 1;
+  }
+  #eat{
+    width: 12px;
+    height: 12px;
+    background-color: $yellow;
+    position: relative;
+    left: 5px;
+    top: 0px;
+  }
+}
