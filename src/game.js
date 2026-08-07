@@ -1,16 +1,16 @@
+//  funcional para 1200p * 1147p
+
+// tablero
+let tablero = document.querySelector('.game_container');
 
 // puntacion
 let puntos = 0
 let score = document.getElementById('sc').textContent = ` ${puntos}`;
 
 // Salto aleatorio de eat
-let eat = document.querySelector('#eat');
-let saltoVertical = 0;
-let saltoHorizontal = 5;
-
-// left max 1090 min 2, top max 935 min 0
+/*
 function saltoEat(){
-    if(Math.abs(movVertical - saltoVertical) < 41 && Math.abs(movHorizontal - saltoHorizontal) < 40){
+    if(Math.abs(movVertical - saltoVertical) && Math.abs(movHorizontal - saltoHorizontal) ){
         saltoVertical = Math.floor(Math.random() * 935)
         eat.style.top = saltoVertical + 'px';
         saltoHorizontal = Math.floor(Math.random() * 1090)
@@ -18,6 +18,29 @@ function saltoEat(){
         puntos += 1;
     }
     document.getElementById('sc').textContent = ` ${puntos}`;
+} */
+
+let eat = document.querySelector('#eat');
+// posición inical X y Y de eat
+let saltoVertical = 5; 
+let saltoHorizontal = 5; 
+let eatSize = 12;
+
+// variables de apollo.
+let anchoMaxEat = tablero.clientWidth - eatSize;
+let altoMaxEat = tablero.clientHeight - eatSize;
+let puntoColision = 14;
+
+
+function saltoEat(){
+    if ((Math.abs(movVertical - saltoVertical) < puntoColision) && ( Math.abs(movHorizontal - saltoHorizontal) < puntoColision)){
+        saltoVertical = Math.floor(Math.random() * altoMaxEat)
+        eat.style.top = saltoVertical + 'px';
+        saltoHorizontal = Math.floor(Math.random() * anchoMaxEat)
+        eat.style.left= saltoHorizontal + 'px';
+        puntos += 1;
+        document.getElementById('sc').textContent = ` ${puntos}`;
+    }
 }
 
 const salto = new CustomEvent("saltoAleatorio")
@@ -26,32 +49,34 @@ document.addEventListener('saltoAleatorio', (e)=>{saltoEat()})
 
 // movimientos de la bola
 let bola = document.querySelector('#ball');
-let movVertical = 430;
-let movHorizontal = 550;
+// posición inical X y Y de la bola.
+let movVertical = 475;  
+let movHorizontal = 540;
+let bolaSize = 30;
 
-function moverBola(){
-    document.addEventListener('keydown', (e)=>{
-        if (e.key === 'ArrowUp' && movVertical > 2){
-            movVertical = movVertical - 5;
-            document.dispatchEvent(salto);
-            bola.style.top = movVertical + 'px';
-        }
-        if (e.key === 'ArrowDown' && movVertical < 948){
-            movVertical = movVertical + 5;
-            document.dispatchEvent(salto);
-            bola.style.top = movVertical + 'px';
-        }
-        if (e.key === 'ArrowLeft' && movHorizontal > 2){
-            movHorizontal = movHorizontal - 5;
-            document.dispatchEvent(salto);
-            bola.style.left = movHorizontal + 'px';
-        }
-        if (e.key === 'ArrowRight' && movHorizontal < 1054){
-            movHorizontal = movHorizontal + 5;
-            document.dispatchEvent(salto);
-            bola.style.left = movHorizontal + 'px';
-        }
-    })
+// variables de apoyo.
+let limiteAnchoMax = tablero.clientWidth - bolaSize;
+let limiteAltoMax = tablero.clientHeight - bolaSize;
+let limiteMin = 0
+
+document.addEventListener('keydown', (e)=>{moverBola(e.key)})
+function moverBola(tecla){
+    if (tecla === 'ArrowUp' && movVertical > limiteMin){ 
+        movVertical = movVertical - 5;
+        bola.style.top = movVertical + 'px';
+    }
+    if (tecla === 'ArrowDown' && movVertical < limiteAltoMax){ 
+        movVertical = movVertical + 5;
+        bola.style.top = movVertical + 'px';
+    }
+    if (tecla === 'ArrowLeft' && movHorizontal > limiteMin){ 
+        movHorizontal = movHorizontal - 5;     
+        bola.style.left = movHorizontal + 'px';
+    }
+    if (tecla === 'ArrowRight' && movHorizontal < limiteAnchoMax){ 
+        movHorizontal = movHorizontal + 5;
+        bola.style.left = movHorizontal + 'px';
+    }
     document.dispatchEvent(salto);
 }
 

@@ -8,11 +8,12 @@
 
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
   margin-left: auto;
   margin-right: auto;
   padding: 16px;
   background-image: url("../../img/fondos/fondo-black.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
 }
 

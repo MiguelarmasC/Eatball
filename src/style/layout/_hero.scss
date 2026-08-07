@@ -8,26 +8,26 @@
 
 .game_container{
   width: 95%;
-  height:82vw;
+  height:80vw;
   border: 3px solid $green;
   align-self: center;
-  margin-bottom: 17px;
+  position: relative;
   #ball{
     width: 30px;
     height: 30px;
     background-color: $red;
     border-radius: 25px;
-    position: relative;
-    left: 550px;
-    top: 430px;
+    position: absolute;
+    left: calc(50% - 15px);
+    top:  calc(50% - 15px);
     z-index: 1;
   }
   #eat{
     width: 12px;
     height: 12px;
     background-color: $yellow;
-    position: relative;
+    position: absolute;
     left: 5px;
-    top: 0px;
+    top: 5px;
   }
 }
