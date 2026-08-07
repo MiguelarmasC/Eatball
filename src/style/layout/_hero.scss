@@ -2,24 +2,34 @@
 @use '../abstracts/mixins' as *;
 
 .container{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  height: 150vw;
+  @include breakpoint(tablethorizontal){
+    height:110vw;  
+  }
+  @include breakpoint(desktop){
+    height:100vw;  
+  }
+  @include breakpoint(desktopxl){
+    height:80vw;  
+  }
 }
 
 .game_container{
   width: 95%;
-  height:100vw;
+  height:80%;
   border: 3px solid $green;
   align-self: center;
   position: relative;
   @include breakpoint(tablet){
-    height:80vw;  
+    height:60%;  
+  }
+  @include breakpoint(tablethorizontal){
+    height:55%;  
   }
   @include breakpoint(desktop){
-    height:68vw;  
-  }
-  @include breakpoint(desktopxl){
-    height:40vw;  
+    height:50%;   
   }
   #ball{
     width: 30px;
