@@ -50,14 +50,14 @@ document.addEventListener('saltoAleatorio', (e)=>{saltoEat()})
 // movimientos de la bola
 let bola = document.querySelector('#ball');
 // posición inical X y Y de la bola.
-let movVertical = 475;  
-let movHorizontal = 540;
-let bolaSize = 30;
+let movVertical = (tablero.clientHeight / 2) - 15;  // 475
+let movHorizontal = (tablero.clientWidth / 2) - 15;  //540
+let bolaSize = 35;
 
 // variables de apoyo.
 let limiteAnchoMax = tablero.clientWidth - bolaSize;
 let limiteAltoMax = tablero.clientHeight - bolaSize;
-let limiteMin = 0
+let limiteMin = 5;
 
 document.addEventListener('keydown', (e)=>{moverBola(e.key)})
 function moverBola(tecla){
@@ -79,6 +79,28 @@ function moverBola(tecla){
     }
     document.dispatchEvent(salto);
 }
+
+// Ajuste de valores limites segun viewport.
+// valores iniciales.
+let altoVentana = document.documentElement.clientHeight;
+let anchoVentana = document.documentElement.clientWidth;
+
+function viewportAjuste(){
+    if (altoVentana != document.documentElement.clientHeight){
+        altoVentana = document.documentElement.clientHeight;
+        limiteAltoMax = tablero.clientHeight - bolaSize;
+    }
+    if (anchoVentana != document.documentElement.clientWidth){
+        anchoVentana = document.documentElement.clientWidth;
+        limiteAnchoMax = tablero.clientWidth - bolaSize;
+    }
+    document.dispatchEvent(ajusteViewport);
+}
+
+const ajusteViewport = new CustomEvent("ajusteViewport")
+document.addEventListener('ajusteViewport', (e)=>{viewportAjuste()})
+
+viewportAjuste()
 
 moverBola()
 saltoEat()

@@ -8,10 +8,19 @@
 
 .game_container{
   width: 95%;
-  height:80vw;
+  height:100vw;
   border: 3px solid $green;
   align-self: center;
   position: relative;
+  @include breakpoint(tablet){
+    height:80vw;  
+  }
+  @include breakpoint(desktop){
+    height:68vw;  
+  }
+  @include breakpoint(desktopxl){
+    height:40vw;  
+  }
   #ball{
     width: 30px;
     height: 30px;
