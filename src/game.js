@@ -123,12 +123,7 @@ function viewportAjuste(){
 }*/
 
 // movimiento de la bola en pantallas tactiles.
-
-document.addEventListener('touchmove', (e)=>{
-	e.preventDefault();
-	moverBolaTactil();
-},{passive: false})
-
+/*
 let movIniVertical = 0;
 let movIniHorizontal = 0;
 let movFinVertical = 0;
@@ -144,7 +139,10 @@ document.addEventListener('touchend', (e)=>{
 	movFinHorizontal = e.changedTouches[0].clientX;
 })
 
-Math.abs
+document.addEventListener('touchmove', (e)=>{
+	e.preventDefault();
+    moverBolaTactil()
+},{passive: false})
 
 function moverBolaTactil(){
     if (Math.abs(movFinVertical - movIniVertical) > limiteMin){ 
@@ -165,7 +163,7 @@ function moverBolaTactil(){
     }
     document.dispatchEvent(salto);
 }
-
+*/
 
 detectarAjusteViewport()
 viewportAjuste()
