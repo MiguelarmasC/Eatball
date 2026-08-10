@@ -122,7 +122,45 @@ function viewportAjuste(){
     document.dispatchEvent(ajusteViewport);
 }*/
 
+let movIniVertical = 0;
+let movIniHorizontal = 0;
+let movFinVertical = 0;
+let movFinHorizontal = 0;
+
+document.addEventListener('touchstart', (e)=>{
+	movIniVertical = e.touches[0].clientY;
+	movIniHorizontal = e.touches[0].clientX;
+})
+
+document.addEventListener('touchmove', (e)=>{
+	movFinVertical = Math.abs(movIniVertical - e.changedTouches[0].clientY);
+	movFinHorizontal = Math.abs (movIniHorizontal - e.changedTouches[0].clientX);
+	moverBolaTactil();
+})
+
+function moverBolaTactil(){
+    if (movFinVertical > limiteMin){ 
+        movVertical = movVertical - 5;
+        bola.style.top = movVertical + 'px';
+    }
+    if (movFinVertical < limiteAltoMax){ 
+        movVertical = movVertical + 5;
+        bola.style.top = movVertical + 'px';
+    }
+    if (movFinHorizontal > limiteMin){ 
+        movHorizontal = movHorizontal - 5;     
+        bola.style.left = movHorizontal + 'px';
+    }
+    if (movFinHorizontal < limiteAnchoMax){ 
+        movHorizontal = movHorizontal + 5;
+        bola.style.left = movHorizontal + 'px';
+    }
+    document.dispatchEvent(salto);
+}
+
+
 detectarAjusteViewport()
 viewportAjuste()
 moverBola()
+moverBolaTactil()
 saltoEat()
