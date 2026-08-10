@@ -23,10 +23,19 @@ Un mini juego interactivo para navegador desarrollado con **HTML5, SASS/CSS3 y J
 
 ---
 
+## Ajuste de limites del Tablero.
+
+Cada vez que se cambie o modifique el tamaño de la ventana de juego es necesario recargar la pg para que los limites de la bola y la comida se ajusten al nuevo tamaño del tablero.
+
+---
 ## ⚙️ Instalación y Uso Local
 
-No requiere de ningún servidor para ejecutarse. Puedes clonarlo y abrirlo directamente en tu navegador.
+No requiere de ningún servidor para ejecutarse. Puedes clonarlo y abrirlo directamente en tu navegador o abrirlo desde el link.
 
 1. **Clona este repositorio:**
    ```bash
    git clone [https://github.com/MiguelarmasC/Eatball.git](https://github.com/MiguelarmasC/Eatball.git)
+
+2. **Link de Gh-pages:**
+   https://miguelarmasc.github.io/Eatball/
+ 
