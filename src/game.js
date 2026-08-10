@@ -1,5 +1,3 @@
-//  funcional para 1200p * 1147p
-
 // tablero
 let tablero = document.querySelector('.game_container');
 
@@ -85,6 +83,33 @@ function moverBola(tecla){
 let altoVentana = document.documentElement.clientHeight;
 let anchoVentana = document.documentElement.clientWidth;
 
+window.addEventListener('resize',(e)=>{detectarAjusteViewport()})
+
+function detectarAjusteViewport(){
+    if ((altoVentana != document.documentElement.clientHeight) || (anchoVentana != document.documentElement.clientWidth)){
+        document.dispatchEvent(ajusteViewport);
+    } 
+}
+
+function viewportAjuste(){
+    altoVentana = document.documentElement.clientHeight;
+    limiteAltoMax = tablero.clientHeight - bolaSize;
+    anchoVentana = document.documentElement.clientWidth;
+    limiteAnchoMax = tablero.clientWidth - bolaSize;
+    if(movHorizontal > limiteAnchoMax){
+        movHorizontal = limiteAnchoMax;
+        bola.style.left = movHorizontal + 'px';
+    }
+    if(movVertical > limiteAltoMax){
+        movVertical = limiteAltoMax;
+        bola.style.left = movVertical + 'px';
+    }
+    saltoEat()
+}
+
+const ajusteViewport = new CustomEvent("ajusteViewport")
+document.addEventListener('ajusteViewport', (e)=>{viewportAjuste()})
+/*
 function viewportAjuste(){
     if (altoVentana != document.documentElement.clientHeight){
         altoVentana = document.documentElement.clientHeight;
@@ -95,12 +120,9 @@ function viewportAjuste(){
         limiteAnchoMax = tablero.clientWidth - bolaSize;
     }
     document.dispatchEvent(ajusteViewport);
-}
+}*/
 
-const ajusteViewport = new CustomEvent("ajusteViewport")
-document.addEventListener('ajusteViewport', (e)=>{viewportAjuste()})
-
+detectarAjusteViewport()
 viewportAjuste()
-
 moverBola()
 saltoEat()

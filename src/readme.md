@@ -3,7 +3,7 @@
 Un mini juego interactivo para navegador desarrollado con **HTML5, SASS/CSS3 y JavaScript**. El objetivo es controlar una bola dentro de un escenario para recolectar comida, sumando puntos cada vez que colisionas con ella.
 
 ---
-## 🎮 Cómo Jugar
+## 🎮 Cómo Jugar.
 
 1. Usa las **flechas del teclado** para mover la bola.
 2. Dirige la bola hacia el objeto que representa la comida.
@@ -11,7 +11,7 @@ Un mini juego interactivo para navegador desarrollado con **HTML5, SASS/CSS3 y J
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Tecnologías Utilizadas.
 
 * **HTML5:** Estructura del escenario y elementos del juego.
 * **SASS / CSS3:** Estilos visuales, layout centrado y animaciones.
@@ -23,7 +23,12 @@ Un mini juego interactivo para navegador desarrollado con **HTML5, SASS/CSS3 y J
 
 ---
 
-## ⚙️ Instalación y Uso Local
+## Ajuste de limites del Tablero.
+
+Cada vez que se cambie o modifique el tamaño de la ventana de juego es necesario recargar la pg para que los limites de la bola y la comida se ajusten al nuevo tamaño del tablero.
+
+---
+## ⚙️ Instalación y Uso Local.
 
 No requiere de ningún servidor para ejecutarse. Puedes clonarlo y abrirlo directamente en tu navegador.
 
