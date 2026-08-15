@@ -4,32 +4,23 @@
 .container{
   display: flex;
   flex-direction: column;
-  height: 150vw;
-  @include breakpoint(tablethorizontal){
-    height:110vw;  
-  }
-  @include breakpoint(desktop){
-    height:100vw;  
-  }
-  @include breakpoint(desktopxl){
-    height:80vw;  
-  }
+  height: 100vh;
 }
 
 .game_container{
   width: 95%;
-  height:80%;
+  height:75%;
   border: 3px solid $green;
-  align-self: center;
   position: relative;
+  align-self: center;
   @include breakpoint(tablet){
-    height:60%;  
+    height:65%;  
   }
   @include breakpoint(tablethorizontal){
-    height:55%;  
+    height:75%;  
   }
   @include breakpoint(desktop){
-    height:50%;   
+    height:85%;   
   }
   #ball{
     width: 30px;
