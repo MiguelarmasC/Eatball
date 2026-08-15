@@ -126,8 +126,6 @@ function viewportAjuste(){
 
 let movIniVertical = 0;
 let movIniHorizontal = 0;
-let movFinVertical = 0;
-let movFinHorizontal = 0;
 let movActVertical = 0;
 let movActHorizontal = 0;
 
@@ -137,33 +135,30 @@ document.addEventListener('touchstart', (e)=>{
 	movIniHorizontal = e.touches[0].clientX;
 })
 
-document.addEventListener('touchend', (e)=>{
-	movFinVertical = e.changedTouches[0].clientY;
-	movFinHorizontal = e.changedTouches[0].clientX;
-})
-
 document.addEventListener('touchmove', (e)=>{
 	e.preventDefault();
     movActVertical = e.changedTouches[0].clientY;
 	movActHorizontal = e.changedTouches[0].clientX;
     moverBolaTactil()
+    movIniVertical = movActVertical;
+	movIniHorizontal = movActHorizontal;
 },{passive: false})
 
 function moverBolaTactil(){
-    if (Math.abs(movFinVertical - movIniVertical) > limiteMin){ 
-        movVertical = movVertical - movActVertical; // 5
+    if ((movActVertical - movIniVertical > 0) && (movActVertical - movIniVertical > limiteMin)){ 
+        movVertical = movVertical + 5;
         bola.style.top = movVertical + 'px';
     }
-    if (Math.abs(movFinVertical - movIniVertical) < limiteAltoMax){ 
-        movVertical = movVertical + movActVertical; // 5
+    if ((movActVertical - movIniVertical < 0) && (movActVertical - movIniVertical < limiteAltoMax)){ 
+        movVertical = movVertical - 5; 
         bola.style.top = movVertical + 'px';
     }
-    if (Math.abs(movFinHorizontal - movIniHorizontal) > limiteMin){ 
-        movHorizontal = movHorizontal - movActHorizontal;  // 5   
+    if ((movActHorizontal - movIniHorizontal > 0) && (movActHorizontal - movIniHorizontal > limiteMin)){ 
+        movHorizontal = movHorizontal + 5;     
         bola.style.left = movHorizontal + 'px';
     }
-    if (Math.abs(movFinHorizontal - movIniHorizontal) < limiteAnchoMax){ 
-        movHorizontal = movHorizontal + movActHorizontal;  // 5
+    if ((movActHorizontal - movIniHorizontal < 0) && (movActHorizontal - movIniHorizontal > limiteAnchoMax)){ 
+        movHorizontal = movHorizontal - 5;  
         bola.style.left = movHorizontal + 'px';
     }
     document.dispatchEvent(salto);
