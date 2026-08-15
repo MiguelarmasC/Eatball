@@ -6,19 +6,6 @@ header{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10%;
-  @include breakpoint(tablet){
-    margin-bottom: 5%;  
-  }
-  @include breakpoint(tablethorizontal){
-    margin-bottom: 2%;  
-  }
-  @include breakpoint(desktop){
-    margin-bottom: 5%;  
-  }
-  @include breakpoint(desktopxl){
-   margin-bottom: 2%;  
-  }
   #logo{
     width: 80px;
     height: 80px;

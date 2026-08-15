@@ -4,7 +4,11 @@
 .container{
   display: flex;
   flex-direction: column;
+  gap: 50px;
   height: 100vh;
+  @include breakpoint(desktop){
+    height: 90vh;   
+  }
 }
 
 .game_container{
@@ -20,7 +24,7 @@
     height:75%;  
   }
   @include breakpoint(desktop){
-    height:85%;   
+    height:80%;   
   }
   #ball{
     width: 30px;
