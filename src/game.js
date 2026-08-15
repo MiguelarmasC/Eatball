@@ -102,7 +102,7 @@ function viewportAjuste(){
     }
     if(movVertical > limiteAltoMax){
         movVertical = limiteAltoMax;
-        bola.style.left = movVertical + 'px';
+        bola.style.top = movVertical + 'px';
     }
     saltoEat()
 }
@@ -123,11 +123,14 @@ function viewportAjuste(){
 }*/
 
 // movimiento de la bola en pantallas tactiles.
-/*
+
 let movIniVertical = 0;
 let movIniHorizontal = 0;
 let movFinVertical = 0;
 let movFinHorizontal = 0;
+let movActVertical = 0;
+let movActHorizontal = 0;
+
 
 document.addEventListener('touchstart', (e)=>{
 	movIniVertical = e.touches[0].clientY;
@@ -141,29 +144,31 @@ document.addEventListener('touchend', (e)=>{
 
 document.addEventListener('touchmove', (e)=>{
 	e.preventDefault();
+    movActVertical = e.changedTouches[0].clientY;
+	movActHorizontal = e.changedTouches[0].clientX;
     moverBolaTactil()
 },{passive: false})
 
 function moverBolaTactil(){
     if (Math.abs(movFinVertical - movIniVertical) > limiteMin){ 
-        movVertical = movVertical - 5;
+        movVertical = movVertical - movActVertical; // 5
         bola.style.top = movVertical + 'px';
     }
     if (Math.abs(movFinVertical - movIniVertical) < limiteAltoMax){ 
-        movVertical = movVertical + 5;
+        movVertical = movVertical + movActVertical; // 5
         bola.style.top = movVertical + 'px';
     }
     if (Math.abs(movFinHorizontal - movIniHorizontal) > limiteMin){ 
-        movHorizontal = movHorizontal - 5;     
+        movHorizontal = movHorizontal - movActHorizontal;  // 5   
         bola.style.left = movHorizontal + 'px';
     }
     if (Math.abs(movFinHorizontal - movIniHorizontal) < limiteAnchoMax){ 
-        movHorizontal = movHorizontal + 5;
+        movHorizontal = movHorizontal + movActHorizontal;  // 5
         bola.style.left = movHorizontal + 'px';
     }
     document.dispatchEvent(salto);
 }
-*/
+
 
 detectarAjusteViewport()
 viewportAjuste()
