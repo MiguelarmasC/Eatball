@@ -13,13 +13,10 @@
 
 .game_container{
   width: 95%;
-  height:75%;
+  height:65%;
   border: 3px solid $green;
   position: relative;
   align-self: center;
-  @include breakpoint(tablet){
-    height:65%;  
-  }
   @include breakpoint(tablethorizontal){
     height:75%;  
   }
