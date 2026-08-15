@@ -4,7 +4,7 @@
 .container{
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
   height: 100vh;
   @include breakpoint(desktop){
     height: 95vh;   
