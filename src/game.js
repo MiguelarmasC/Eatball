@@ -144,6 +144,7 @@ document.addEventListener('touchmove', (e)=>{
 	movIniHorizontal = movActHorizontal;
 },{passive: false})
 
+/*
 function moverBolaTactil(){
     if ((movActVertical - movIniVertical > 0) && (movActVertical - movIniVertical > limiteMin)){ 
         movVertical = movVertical + 5;
@@ -163,7 +164,34 @@ function moverBolaTactil(){
     }
     document.dispatchEvent(salto);
 }
-
+*/
+function moverBolaTactil(){
+    if (movActVertical - movIniVertical > 0){  
+        movVertical = movVertical + 5;
+	    if (movVertical > limiteMin){
+        	bola.style.top = movVertical + 'px';
+	    }
+    }
+    if (movActVertical - movIniVertical < 0){ 
+        movVertical = movVertical - 5;
+	    if (movVertical < limiteAltoMax){ 
+        	bola.style.top = movVertical + 'px';
+	    }
+    }
+    if (movActHorizontal - movIniHorizontal > 0){ 
+        movHorizontal = movHorizontal + 5;
+	    if (movHorizontal > limiteMin){     
+        	bola.style.left = movHorizontal + 'px';
+	    }
+    }
+    if (movActHorizontal - movIniHorizontal < 0){ 
+        movHorizontal = movHorizontal - 5;
+	    if (movHorizontal > limiteAnchoMax){  
+        	bola.style.left = movHorizontal + 'px';
+	    }
+    }
+    document.dispatchEvent(salto);
+}
 
 detectarAjusteViewport()
 viewportAjuste()
