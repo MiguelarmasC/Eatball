@@ -123,12 +123,11 @@ function viewportAjuste(){
 }*/
 
 // movimiento de la bola en pantallas tactiles.
-
+/*
 let movIniVertical = 0;
 let movIniHorizontal = 0;
 let movActVertical = 0;
 let movActHorizontal = 0;
-
 
 document.addEventListener('touchstart', (e)=>{
 	movIniVertical = e.touches[0].clientY;
@@ -144,7 +143,6 @@ document.addEventListener('touchmove', (e)=>{
 	movIniHorizontal = movActHorizontal;
 },{passive: false})
 
-/*
 function moverBolaTactil(){
     if ((movActVertical - movIniVertical > 0) && (movActVertical - movIniVertical > limiteMin)){ 
         movVertical = movVertical + 5;
@@ -164,7 +162,6 @@ function moverBolaTactil(){
     }
     document.dispatchEvent(salto);
 }
-*/
 function moverBolaTactil(){
     if (movActVertical - movIniVertical > 0){  
         movVertical = movVertical + 5;
@@ -192,9 +189,35 @@ function moverBolaTactil(){
     }
     document.dispatchEvent(salto);
 }
+*/
+// controles tactiles 
+let controls = document.getElementsByClassName('btn-arrows');
+
+document.addEventListener('touchstar', (e)=>{moverBolaclick(e.target.id)})
+function moverBolaclick(tecla){
+    for (let control of controls){
+        if (tecla === 'up' && movVertical > limiteMin){ 
+            movVertical = movVertical - 5;
+            bola.style.top = movVertical + 'px';
+        }
+        if (tecla === 'down' && movVertical < limiteAltoMax){ 
+            movVertical = movVertical + 5;
+            bola.style.top = movVertical + 'px';
+        }
+        if (tecla === 'left' && movHorizontal > limiteMin){ 
+            movHorizontal = movHorizontal - 5;     
+            bola.style.left = movHorizontal + 'px';
+        }
+        if (tecla === 'right' && movHorizontal < limiteAnchoMax){ 
+            movHorizontal = movHorizontal + 5;
+            bola.style.left = movHorizontal + 'px';
+        }
+    }    
+    document.dispatchEvent(salto);
+}
 
 detectarAjusteViewport()
 viewportAjuste()
 moverBola()
-moverBolaTactil()
+moverBolaclick()
 saltoEat()

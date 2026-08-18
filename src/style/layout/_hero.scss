@@ -42,3 +42,25 @@
     top: 5px;
   }
 }
+
+.btn-arrows{
+  display: flex;
+  justify-content: space-evenly;
+  img{
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: $orange;
+    padding: 5px;
+    box-shadow: 3px 6px 2px $orange;
+    border: 1px solid $black;
+    &:hover{
+      background-color: $yellow;
+      transform: scale(0.8);
+      box-shadow: 2px 8px 2px $yellow;
+    }
+  }
+  @include breakpoint(desktop){
+    display: none;
+  }
+}
