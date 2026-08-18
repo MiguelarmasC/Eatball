@@ -192,35 +192,46 @@ function moverBolaTactil(){
 */
 // controles tactiles 
 let controls = document.getElementsByClassName('btn-arrows');
+let intervalo;
+let btnActual;
+
+function movContinuo(){
+    moverBolaTag(btnActual);
+}
 
 document.addEventListener('touchstart', (e)=>{
-    e.target.classList.add('hoverActivo');
-    moverBolaTag(e.target.id);
+    e.preventDefault()
+    btnActual = e.target;
+    btnActual.classList.add('hoverActivo');
+    moverBolaTag(btnActual.id);
+    intervalo = setInterval(movContinuo, 20);
 })
 function moverBolaTag(tecla){
-    for (let control of controls){
-        if (tecla === 'up' && movVertical > limiteMin){ 
-            movVertical = movVertical - 5;
-            bola.style.top = movVertical + 'px';
-        }
-        if (tecla === 'down' && movVertical < limiteAltoMax){ 
-            movVertical = movVertical + 5;
-            bola.style.top = movVertical + 'px';
-        }
-        if (tecla === 'left' && movHorizontal > limiteMin){ 
-            movHorizontal = movHorizontal - 5;     
-            bola.style.left = movHorizontal + 'px';
-        }
-        if (tecla === 'right' && movHorizontal < limiteAnchoMax){ 
-            movHorizontal = movHorizontal + 5;
-            bola.style.left = movHorizontal + 'px';
-        }
-    }    
+    if (tecla === 'up' && movVertical > limiteMin){ 
+         movVertical = movVertical - 5;
+        bola.style.top = movVertical + 'px';
+    }
+    if (tecla === 'down' && movVertical < limiteAltoMax){ 
+        movVertical = movVertical + 5;
+        bola.style.top = movVertical + 'px';
+    }
+    if (tecla === 'left' && movHorizontal > limiteMin){ 
+        movHorizontal = movHorizontal - 5;     
+        bola.style.left = movHorizontal + 'px';
+    }
+    if (tecla === 'right' && movHorizontal < limiteAnchoMax){ 
+        movHorizontal = movHorizontal + 5;
+        bola.style.left = movHorizontal + 'px';
+    }
+       
     document.dispatchEvent(salto);
 }
 
 document.addEventListener('touchend', (e)=>{
     e.target.classList.remove('hoverActivo');
+    clearInterval(intervalo)
+    intervalo = null;
+    btnActual= null;
 })
 
 detectarAjusteViewport()
