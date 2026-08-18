@@ -54,14 +54,14 @@
     padding: 5px;
     box-shadow: 3px 6px 2px $orange;
     border: 1px solid $black;
+    &.hoverActivo{
+      background-color: $yellow;
+      transform: scale(0.8);
+      box-shadow: 2px 8px 2px $yellow;
+    }
   }
   @include breakpoint(desktop){
     display: none;
   }
 }
 
-.btn-arrows.hoverActivo{
-  background-color: $yellow;
-  transform: scale(0.8);
-  box-shadow: 2px 8px 2px $yellow;
-}

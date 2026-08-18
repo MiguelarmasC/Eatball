@@ -193,9 +193,11 @@ function moverBolaTactil(){
 // controles tactiles 
 let controls = document.getElementsByClassName('btn-arrows');
 
-document.addEventListener('touchstar', (e)=>{moverBolaclick(e.target.id)})
-function moverBolaclick(tecla){
-    tecla.classList.add('hoverActivo');
+document.addEventListener('touchstart', (e)=>{
+    e.target.classList.add('hoverActivo');
+    moverBolaTag(e.target.id);
+})
+function moverBolaTag(tecla){
     for (let control of controls){
         if (tecla === 'up' && movVertical > limiteMin){ 
             movVertical = movVertical - 5;
@@ -218,13 +220,11 @@ function moverBolaclick(tecla){
 }
 
 document.addEventListener('touchend', (e)=>{
-    for (let control of controls){
-        e.target.classList.remove('hoverActivo');
-    }
+    e.target.classList.remove('hoverActivo');
 })
 
 detectarAjusteViewport()
 viewportAjuste()
 moverBola()
-moverBolaclick()
+moverBolaTag()
 saltoEat()
