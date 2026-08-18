@@ -198,12 +198,13 @@ let btnActual;
 function movContinuo(){
     moverBolaTag(btnActual);
 }
-
+document.addEventListener('contextmenu', (e)=>{
+    e.preventDefault();
+})
 document.addEventListener('touchstart', (e)=>{
-    e.preventDefault()
-    btnActual = e.target;
-    btnActual.classList.add('hoverActivo');
-    moverBolaTag(btnActual.id);
+    e.target.classList.add('hoverActivo');
+    btnActual = e.target.id;
+    moverBolaTag(btnActual);
     intervalo = setInterval(movContinuo, 20);
 })
 function moverBolaTag(tecla){
