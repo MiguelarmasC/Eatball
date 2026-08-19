@@ -27,29 +27,25 @@ let eatSize = 12;
 // variables de apollo.
 let anchoMaxEat = tablero.clientWidth - eatSize;
 let altoMaxEat = tablero.clientHeight - eatSize;
-let puntoColision = 14;
-
 
 function saltoEat(){
-    if ((Math.abs(movVertical - saltoVertical) < puntoColision) && ( Math.abs(movHorizontal - saltoHorizontal) < puntoColision)){
-        saltoVertical = Math.floor(Math.random() * altoMaxEat)
-        eat.style.top = saltoVertical + 'px';
-        saltoHorizontal = Math.floor(Math.random() * anchoMaxEat)
-        eat.style.left= saltoHorizontal + 'px';
-        puntos += 1;
-        document.getElementById('sc').textContent = ` ${puntos}`;
-    }
+    saltoVertical = Math.floor(Math.random() * altoMaxEat)
+    eat.style.top = saltoVertical + 'px';
+    saltoHorizontal = Math.floor(Math.random() * anchoMaxEat)
+    eat.style.left= saltoHorizontal + 'px';
+    puntos += 1;
+    document.getElementById('sc').textContent = ` ${puntos}`;
 }
 
 const salto = new CustomEvent("saltoAleatorio")
-document.addEventListener('saltoAleatorio', (e)=>{saltoEat()})
+document.addEventListener('saltoAleatorio', (e)=>{colision()})
 
 
 // movimientos de la bola
 let bola = document.querySelector('#ball');
 // posición inical X y Y de la bola.
-let movVertical = (tablero.clientHeight / 2) - 15;  // 475
-let movHorizontal = (tablero.clientWidth / 2) - 15;  //540
+let movVertical = (tablero.clientHeight / 2) - 15;  
+let movHorizontal = (tablero.clientWidth / 2) - 15;  
 let bolaSize = 35;
 
 // variables de apoyo.
@@ -78,6 +74,21 @@ function moverBola(tecla){
     document.dispatchEvent(salto);
 }
 
+// Colisión entre bola e eat.
+// Se uso el teorema de Pitágoras para crear una colisión mas precisa en 360º.
+let puntoColision = (eatSize + bolaSize)/2;
+
+function colision(){
+    let posXBola = movHorizontal + (bolaSize/2);
+	let posYBola = movVertical + (bolaSize/2);
+	let posXEat = saltoHorizontal + (eatSize/2);
+	let posYEat = saltoVertical + (eatSize/2);
+
+	if (Math.abs((posXBola - posXEat)**2 + (posYBola - posYEat)**2) < puntoColision**2){
+        saltoEat();
+    }
+}
+
 // Ajuste de valores limites segun viewport.
 // valores iniciales.
 let altoVentana = document.documentElement.clientHeight;
@@ -104,7 +115,7 @@ function viewportAjuste(){
         movVertical = limiteAltoMax;
         bola.style.top = movVertical + 'px';
     }
-    saltoEat()
+    colision()
 }
 
 const ajusteViewport = new CustomEvent("ajusteViewport")
@@ -198,9 +209,17 @@ let btnActual;
 function movContinuo(){
     moverBolaTag(btnActual);
 }
+
+function pararMenu(e){
+    e.preventDefault()
+}
+
 document.addEventListener('contextmenu', (e)=>{
-    e.preventDefault();
-})
+   if (anchoVentana < 1200){
+    pararMenu(e);
+   }
+}) // hace que el menú contextual no aparesca en moviles y tablets.
+    
 document.addEventListener('touchstart', (e)=>{
     e.target.classList.add('hoverActivo');
     btnActual = e.target.id;
@@ -239,4 +258,4 @@ detectarAjusteViewport()
 viewportAjuste()
 moverBola()
 moverBolaTag()
-saltoEat()
+colision()
