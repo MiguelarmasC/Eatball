@@ -219,7 +219,7 @@ document.addEventListener('contextmenu', (e)=>{
     pararMenu(e);
    }
 }) // hace que el menú contextual no aparesca en moviles y tablets.
-    
+
 controls.addEventListener('touchstart', (e)=>{
 	if (controls.contains(e.target) && e.target !== controls){    	
 		e.target.classList.add('hoverActivo');
