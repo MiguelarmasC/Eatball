@@ -201,8 +201,8 @@ function moverBolaTactil(){
     document.dispatchEvent(salto);
 }
 */
-// controles tactiles 
-let controls = document.getElementsByClassName('btn-arrows');
+// controles tactiles.
+let controls = document.getElementById('btn-arrows');
 let intervalo;
 let btnActual;
 
@@ -220,12 +220,15 @@ document.addEventListener('contextmenu', (e)=>{
    }
 }) // hace que el menú contextual no aparesca en moviles y tablets.
     
-document.addEventListener('touchstart', (e)=>{
-    e.target.classList.add('hoverActivo');
-    btnActual = e.target.id;
-    moverBolaTag(btnActual);
-    intervalo = setInterval(movContinuo, 20);
+controls.addEventListener('touchstart', (e)=>{
+	if (controls.contains(e.target) && e.target !== controls){    	
+		e.target.classList.add('hoverActivo');
+    	btnActual = e.target.id;
+    	moverBolaTag(btnActual);
+    	intervalo = setInterval(movContinuo, 20);
+	}
 })
+
 function moverBolaTag(tecla){
     if (tecla === 'up' && movVertical > limiteMin){ 
          movVertical = movVertical - 5;
@@ -247,15 +250,15 @@ function moverBolaTag(tecla){
     document.dispatchEvent(salto);
 }
 
-document.addEventListener('touchend', (e)=>{
-    e.target.classList.remove('hoverActivo');
-    clearInterval(intervalo)
-    intervalo = null;
-    btnActual= null;
+controls.addEventListener('touchend', (e)=>{
+	if (controls.contains(e.target) && e.target !== controls){
+    	e.target.classList.remove('hoverActivo');
+    	clearInterval(intervalo)
+    	intervalo = null;
+    	btnActual= null;
+	}
 })
 
 detectarAjusteViewport()
 viewportAjuste()
-moverBola()
-moverBolaTag()
 colision()
